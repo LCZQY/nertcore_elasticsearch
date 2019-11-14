@@ -40,7 +40,7 @@ namespace DotNetLive.Search.UnitTest
         public void Get()
         {
             Engine.Client.DotNetSearch search = new Engine.Client.DotNetSearch().UseIndex("test");
-            var result = search.Query<Article>(1);
+            var result = search.Query<Article>("1");
             Assert.AreEqual(1, result.Id);
             Assert.AreEqual("zhangsan", result.Author);
         }

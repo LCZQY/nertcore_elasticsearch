@@ -110,7 +110,7 @@ namespace DotNetLive.Search.Engine.Client
         /// <param name="id">文档id</param>
         /// <param name="index">文档所在库</param>
         /// <returns>返回该文档</returns>
-        public T Query<T>(long id, string index = null) where T : class
+        public T Query<T>(string id, string index = null) where T : class
         {
             IGetResponse<T> response = _builder?.Client.Get<T>(id, x => x.Type(typeof(T).SearchName()).Index(index ?? _defaultIndex));
             var t = response?.Source;

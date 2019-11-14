@@ -29,7 +29,7 @@ namespace DotNetLive.Search.Engine.Client
         }
         public ElasticClient Client
         {
-            get
+            get//单例模式
             {
                 if (_client == null)
                 {

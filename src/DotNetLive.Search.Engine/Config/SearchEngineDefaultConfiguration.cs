@@ -14,7 +14,7 @@ namespace DotNetLive.Search.Engine.Config
         public IEnumerable<ConfigNode> GetConfig()
         {
             return new List<ConfigNode> {
-                new ConfigNode { Port=9200, Uri="http://120.27.99.151" }
+                new ConfigNode { Port=9200, Uri="http://127.0.0.1" }
             };
         }
     }
