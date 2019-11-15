@@ -1,0 +1,100 @@
+﻿@model IEnumerable<DotNetLive.House.Search.Models.BuildingBaseInfo>
+
+@{
+    ViewData["Title"] = "搜索结果";
+}
+<h2>搜索结果</h2>
+<table class="table class="table col-lg-12"">
+    <thead>
+        <tr>
+            <th>
+                楼盘名称
+            </th>
+            <th>
+                城市码
+            </th>
+            <th>
+                楼盘大区域
+            </th>
+            <th>
+                楼盘小区域
+            </th>
+            <th>
+                最小价格
+            </th>
+            <th>
+                最大价格
+            </th>
+            <th>
+                建筑面积
+            </th>
+            <th>
+                地址
+            </th>
+            <th>
+                封面图
+            </th>
+            <th>
+                备注
+            </th>
+            <th>
+                创建时间
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.District)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Area)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BuiltupArea)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                <img src="http://192.168.100.159:5100/image/@Html.DisplayFor(modelItem => item.Icon)" width="100" height="100">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Summary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateUser)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeleteUser)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

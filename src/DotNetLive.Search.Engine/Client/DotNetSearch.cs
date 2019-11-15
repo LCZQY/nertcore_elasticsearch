@@ -72,8 +72,11 @@ namespace DotNetLive.Search.Engine.Client
         /// <returns>返回true false</returns>
         public bool Index<T>(T model, string index = null) where T : class => HandleResponseResult(() =>
         {
+
             IIndexResponse response = _builder?.Client?.Index(model, x => x.Type(typeof(T).SearchName()).Index(index ?? _defaultIndex));
             return response;
+
+
         });
 
         /// <summary>
@@ -137,7 +140,7 @@ namespace DotNetLive.Search.Engine.Client
             {
                 pageParams = new PageParam
                 {
-                    PageIndex = 1,
+                    PageIndex = 0,
                     PageSize = 20
                 };
             }
@@ -206,8 +209,10 @@ namespace DotNetLive.Search.Engine.Client
                     }
                     listWithHightlight.Add(x.Source);
                 });
+                var hightlight = listWithHightlight;
             }
 
+          
             IQueryResult<T> result = new CustomQueryResult<T>
             {
                 List = list,
@@ -264,8 +269,7 @@ namespace DotNetLive.Search.Engine.Client
             {
                 return null;
             }
-            ISearchRequest searchRequest = new SearchDescriptor<T>().Index(index ?? _defaultIndex).PostFilter(f => f.Term(x => x.Field(field).Value(value)));
-
+            ISearchRequest searchRequest = new SearchDescriptor<T>().Index(index ?? _defaultIndex).PostFilter(f => f.Term(x => x.Field(field).Value(value)));            
             var response = _builder?.Client.Search<T>(searchRequest);
             return response.Documents;
         }
@@ -330,6 +334,7 @@ namespace DotNetLive.Search.Engine.Client
                 {
                     _logger.LogInformation(response.DebugInformation);
                     //_logger.Error(response.ItemsWithErrors)
+                    return 0;
                 }
 
             }
@@ -354,6 +359,7 @@ namespace DotNetLive.Search.Engine.Client
                 {
                     _logger.LogInformation(response.DebugInformation);
                     //_logger.Error(response.ItemsWithErrors)
+                    return 0;
                 }
 
             }
