@@ -10,82 +10,48 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="CreateUpload">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">楼盘名称</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="City" class="control-label"></label>
-                <input asp-for="City" class="form-control" />
-                <span asp-validation-for="City" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="District" class="control-label"></label>
-                <input asp-for="District" class="form-control" />
-                <span asp-validation-for="District" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Area" class="control-label"></label>
-                <input asp-for="Area" class="form-control" />
-                <span asp-validation-for="Area" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="MinPrice" class="control-label"></label>
+                <label asp-for="MinPrice" class="control-label">最低价格</label>
                 <input asp-for="MinPrice" class="form-control" />
                 <span asp-validation-for="MinPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="MaxPrice" class="control-label"></label>
+                <label asp-for="MaxPrice" class="control-label">最高价格</label>
                 <input asp-for="MaxPrice" class="form-control" />
                 <span asp-validation-for="MaxPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BuiltupArea" class="control-label"></label>
+                <label asp-for="BuiltupArea" class="control-label">楼盘面积</label>
                 <input asp-for="BuiltupArea" class="form-control" />
                 <span asp-validation-for="BuiltupArea" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
+                <label asp-for="Address" class="control-label">地址</label>
                 <input asp-for="Address" class="form-control" />
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Icon" class="control-label"></label>
-                <input asp-for="Icon" class="form-control" />
-                <span asp-validation-for="Icon" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Summary" class="control-label"></label>
+                <label asp-for="Summary" class="control-label">简介</label>
                 <input asp-for="Summary" class="form-control" />
                 <span asp-validation-for="Summary" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreateTime" class="control-label"></label>
-                <input asp-for="CreateTime" class="form-control" />
-                <span asp-validation-for="CreateTime" class="text-danger"></span>
+                <label asp-for="Icon" class="control-label">封面</label>
+                <input asp-for="Icon" type="file" value="请选择您的楼盘封面" class="form-control" />
+                <span asp-validation-for="Icon" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CreateUser" class="control-label"></label>
-                <input asp-for="CreateUser" class="form-control" />
-                <span asp-validation-for="CreateUser" class="text-danger"></span>
-            </div>
-          
-            <div class="form-group">
-                <label asp-for="UpdateUser" class="control-label"></label>
-                <input asp-for="UpdateUser" class="form-control" />
-                <span asp-validation-for="UpdateUser" class="text-danger"></span>
-            </div>
-        
-            <div class="form-group">
-                <label asp-for="DeleteUser" class="control-label"></label>
-                <input asp-for="DeleteUser" class="form-control" />
-                <span asp-validation-for="DeleteUser" class="text-danger"></span>
+                <img src="##" width="100" height="100" />
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="CreateUpload" class="btn btn-default" />
             </div>
         </form>
     </div>
@@ -94,7 +60,11 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
+<script src="~/lib/jquery/dist/jquery.js"></script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+<script>
+
+    
+</script>

@@ -32,6 +32,7 @@ namespace DotNetLive.House.Search.Models
         /// </summary>
         [MaxLength(255)]
         public string Name { get; set; }
+
         /// <summary>
         /// 楼盘城市
         /// </summary>
@@ -216,7 +217,7 @@ namespace DotNetLive.House.Search.Models
         /// <summary>
         /// 修改时间
         /// </summary>
-        //public DateTime UpdateTime { get; set; }
+        public DateTime? UpdateTime { get; set; }
 
         /// <summary>
         /// 修改人
