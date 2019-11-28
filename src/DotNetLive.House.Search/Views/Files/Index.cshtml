@@ -1,0 +1,175 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Action 上传</h2>
+<form class="form-horizontal" action="/Files/FileUp" method="post" enctype="multipart/form-data">
+    <input type="file" name="MyPhoto" class="form-control" multiple />
+    <br />
+    <button class="btn btn-default">form上传</button>
+    <br />
+    <span style="color:red">@ViewData["MsgBox"]</span>
+</form>
+
+
+<h2>AJAX 上传</h2>
+<form class="form-horizontal" id="form01" method="post" enctype="multipart/form-data">
+    <input type="file" name="MyPhoto01" class="form-control" multiple />
+    <br />
+    <button type="button" id="btnAjax" class="btn btn-default">ajax上传</button>
+    <br />
+    <span style="color:red" id="span01"></span>
+</form>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $("#btnAjax").on("click", function () {
+        var msg = $("#span01");
+        var form = document.getElementById("form01");
+        //console.log(form);
+        var data = new FormData(form);
+        $.ajax({
+            type: "POST",
+            url: "/files/AjaxFileUp",
+            data: data,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data) {
+                    msg.html(data.msg);
+                }
+            },
+            error: function () {
+                msg.html("上传文件异常,请稍后重试！");
+            }
+        });
+    });
+</script>
+
+
+
+
+<h2>AJAX 上传，并显示上传进度</h2>
+<form class="form-horizontal" id="form02" method="post" enctype="multipart/form-data">
+    <input type="file" name="MyPhoto02" class="form-control" multiple />
+    <br />
+    <button type="button" id="btnAjax02" class="btn btn-default">ajax上传进度效果上传</button>
+    <br />
+    <span style="color:red" id="span02"></span>
+    <div class="progress">
+        <div id="progress-bar02" class="progress-bar" role="progressbar" aria-valuenow="60"
+             aria-valuemin="0" aria-valuemax="100" style="">
+            <span class="sr-only">40% 完成</span>
+        </div>
+    </div>
+</form>
+<script>
+
+    $("input[name='MyPhoto02']").change(function () {
+        $("#progress-bar02").css("width", "0");
+        $("#span02").html("");
+    });
+    $("#btnAjax02").on("click", function () {
+       
+        var interBar;
+        var msg = $("#span02");
+        msg.html("上传中，请稍后...");
+        var form = document.getElementById("form02");
+        //console.log(form);
+        var data = new FormData(form);
+        $.ajax({
+            type: "POST",
+            url: "/files/AjaxFileUp02",
+            data: data,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data) {
+                    msg.html(data.msg);
+                    //清除进度查询
+                    if (interBar) { clearInterval(interBar); }
+                }
+            },
+            error: function () {
+                msg.html("上传文件异常,请稍后重试！");
+                if (interBar) { clearInterval(interBar); }
+            }
+        });
+        //获取进度
+        interBar = setInterval(function () {
+            $.post("/files/ProgresBar02", function (data) {
+                if (data) {
+                    var isClearVal = true;
+                    var strArr = [];
+                    $.each(data, function (i, item) {
+                        strArr.push('文件：' + item.fileName + ",当前上传：" + item.percentBar + '<br/>');
+                         $("#progress-bar02").css("width",item.percentBar );
+                        if (item.status != 2) { isClearVal = false; }
+                    });
+                    msg.html(strArr.join(''));
+                   
+                    if (isClearVal) {
+                        if (interBar) { clearInterval(interBar); }
+                    }
+                }
+            });
+        }, 200);
+    });
+</script>
+
+
+<h2>AJAX 多文件上传，并显示上传进度</h2>
+<form class="form-horizontal" id="form03" method="post" enctype="multipart/form-data">
+    <input type="file" name="MyPhoto03" class="form-control" multiple />
+    <br />
+    <button type="button" id="btnAjax03" class="btn btn-default">task任务处理ajax上传进度效果上传</button>
+    <br />
+    <span style="color:red" id="span03"></span>
+</form>
+
+<script>
+    $("#btnAjax03").on("click", function () {
+        var interBar;
+        var msg = $("#span03");
+        msg.html("上传中，请稍后...");
+        var form = document.getElementById("form03");
+        //console.log(form);
+        var data = new FormData(form);
+        $.ajax({
+            type: "POST",
+            url: "/files/AjaxFileUp03",
+            data: data,
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                if (data) {
+                    msg.html(data.msg);
+                    //清除进度查询
+                    if (interBar) { clearInterval(interBar); }
+                }
+            },
+            error: function () {
+                msg.html("上传文件异常,请稍后重试！");
+                if (interBar) { clearInterval(interBar); }
+            }
+        });
+        //获取进度
+        interBar = setInterval(function () {
+            $.post("/files/ProgresBar03", function (data) {
+                if (data) {
+                    var isClearVal = true;
+                    var strArr = [];
+                    $.each(data, function (i, item) {
+                   
+                        strArr.push('文件：' + item.fileName + ",当前上传：" + item.percentBar + '<br/>');
+                        if (item.status != 2) { isClearVal = false; }
+                    });
+                    msg.html(strArr.join(''));
+                    if (isClearVal) {
+                        if (interBar) { clearInterval(interBar); }
+                    }
+                }
+            });
+        }, 200);
+    });
+</script>

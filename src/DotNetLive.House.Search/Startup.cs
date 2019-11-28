@@ -35,7 +35,8 @@ namespace DotNetLive.House.Search
 
             //连接 mysql 数据库，添加数据库上下文
             services.AddDbContext<BuildShopDbContext>(options => options.UseMySQL(Configuration.GetConnectionString("DefaultConnection")));
-
+            //添加cache支持
+            services.AddDistributedMemoryCache();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using DotNetLive.House.Search.Models;
+﻿using DotNetLive.House.Search.Models;
 using DotNetLive.Search.Engine.Client;
 using DotNetLive.Search.Engine.Model;
-using System.IO;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DotNetLive.House.Search.Controllers
 {
@@ -119,7 +119,7 @@ namespace DotNetLive.House.Search.Controllers
 
         public IActionResult BuildShopView(List<BuildingBaseInfo> baseInfos)
         {
-            var list = _dbContext.buildingBaseInfos.ToList();
+            var list = _dbContext.buildingBaseInfos.OrderByDescending(u=>u.CreateTime).ToList();
             list.ForEach(y =>
             {
                 if (y.Summary != null && y?.Summary?.Length > 30)
@@ -192,9 +192,12 @@ namespace DotNetLive.House.Search.Controllers
         /// 新增房源信息
         /// </summary>
         /// <returns></returns>
-        public IActionResult CreateUpload(BuildingBaseInfo baseInfo)
+        public async Task<IActionResult> CreateUpload(BuildingBaseInfo baseInfo)
         {
-            string image = UploadFile();
+
+ 
+
+            string image =await UploadFile(baseInfo.File[0]);
             if (string.IsNullOrWhiteSpace(image))
             {
                 return new BadRequestObjectResult("图片上传失败");
@@ -262,7 +265,6 @@ namespace DotNetLive.House.Search.Controllers
         public IActionResult Delete(string Id)
         {
 
-
             var deatil = _dbContext.buildingBaseInfos.SingleOrDefault(s => s.Id == Id);
             _dbContext.Attach(deatil);
             _dbContext.Remove(deatil);
@@ -271,6 +273,9 @@ namespace DotNetLive.House.Search.Controllers
                 return View("BuildShopView");
             }
             // 如何结合ES ?
+
+
+
             return new BadRequestResult();
         }
 
@@ -279,40 +284,38 @@ namespace DotNetLive.House.Search.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public string UploadFile()
-         {
+        public async Task<string> UploadFile(IFormFile MyPhoto)
+        {
             try
             {
-                string Id = "";//记录返回的附件Id
-                string filePath = "";//记录文件路径
-                IFormFileCollection formFiles = Request.Form.Files;//获取上传的文件
-                if (formFiles == null || formFiles.Count == 0)
+                if (MyPhoto == null || MyPhoto.Length <= 0)
                 {
-                    return "";// Json(new { status = -1, message = "没有上传文件", filepath = "" });
+                    ViewData["MsgBox"] = "请上传图片。";// return View();
                 }
-                IFormFile file = formFiles[0];
-                string fileExtension = file.FileName.Substring(file.FileName.LastIndexOf(".") + 1);//获取文件名称后缀 
-                //保存文件
-                var stream = file.OpenReadStream();
-                // 把 Stream 转换成 byte[] 
-                byte[] bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, bytes.Length);
-                // 设置当前流的位置为流的开始 
-                stream.Seek(0, SeekOrigin.Begin);
-
-                var path = _hostingEnvironment.WebRootPath + "images\\" + file.FileName;
-                // 把 byte[] 写入文件 
-                FileStream fs = new FileStream(path, FileMode.Create);
-                BinaryWriter bw = new BinaryWriter(fs);
-                bw.Write(bytes);
-                bw.Close();
-                fs.Close();
-                return path; //Json(new { success = true, status = 0, message = "上传成功", filepath = "D:\\" + file.FileName, code = Id });
+                //var file = Request.Form.Files;
+                var fileName = MyPhoto.FileName;
+                var contentType = MyPhoto.ContentType;
+                var len = MyPhoto.Length;
+                var fileType = new string[] { "image/jpeg", "image/png" };
+                if (!fileType.Any(b => b.Contains(contentType)))
+                {
+                    ViewData["MsgBox"] = ($"只能上传{string.Join(",", fileType)}格式的图片。"); //return View(); 
+                }
+                if (len > 1024 * 1024 * 4)
+                {
+                    ViewData["MsgBox"] = ("上传图片大小只能在4M以下。"); //return View();
+                }
+                var webroot = _hostingEnvironment.WebRootPath + "\\images\\";
+                var path = Path.Combine(webroot, fileName);
+                using (var stream = System.IO.File.Create(path))
+                {
+                    await MyPhoto.CopyToAsync(stream);
+                }
+                return path;
             }
-
             catch (Exception ex)
             {
-                return "";//Json(new { success = false, status = -3, message = "上传失败", data = ex.Message, code = "" });
+                return "";
             }
         }
 

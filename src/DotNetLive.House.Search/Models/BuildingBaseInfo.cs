@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -171,6 +173,8 @@ namespace DotNetLive.House.Search.Models
         [MaxLength(300)]
         public string Icon { get; set; }
 
+        [NotMapped]
+        public List<IFormFile> File { get; set; }
         /// <summary>
         /// 审核状态
         /// </summary>
