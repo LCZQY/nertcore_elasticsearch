@@ -11,44 +11,47 @@
 <div class="row">
     <div class="col-md-4">
        
-            <form asp-action="Edit">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Id" />
-                <div class="form-group">
-                    <label asp-for="Name" class="control-label">楼盘名称</label>
-                    <input asp-for="Name" class="form-control" value="@Model.Name" />
-                    <span asp-validation-for="Name" class="text-danger" ></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="MinPrice" class="control-label">最低价格</label>
-                    <input asp-for="MinPrice" class="form-control" value="@Model.MinPrice" />
-                    <span asp-validation-for="MinPrice" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="MaxPrice" class="control-label">最高价格</label>
-                    <input asp-for="MaxPrice" class="form-control"  value="@Model.MaxPrice"/>
-                    <span asp-validation-for="MaxPrice" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="BuiltupArea" class="control-label">楼盘面积</label>
-                    <input asp-for="BuiltupArea" class="form-control" value="@Model.BuiltupArea" />
-                    <span asp-validation-for="BuiltupArea" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Address" class="control-label">地址</label>
-                    <input asp-for="Address" class="form-control" value="@Model.Address" />
-                    <span asp-validation-for="Address" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Summary" class="control-label">简介</label>
-                    <input asp-for="Summary" class="form-control" value="@Model.Summary" />
-                    <span asp-validation-for="Summary" class="text-danger"></span>
-                </div>
-
-                <div class="form-group text-center">
-                    <input type="submit" value="保存" class="btn btn-danger" />
-                </div>
-            </form>
+        <form asp-action="EditUpload">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">楼盘名称</label>
+                <input asp-for="Name" class="form-control" value="@Model.Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinPrice" class="control-label">最低价格</label>
+                <input asp-for="MinPrice" class="form-control" value="@Model.MinPrice" />
+                <span asp-validation-for="MinPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxPrice" class="control-label">最高价格</label>
+                <input asp-for="MaxPrice" class="form-control" value="@Model.MaxPrice" />
+                <span asp-validation-for="MaxPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BuiltupArea" class="control-label">楼盘面积</label>
+                <input asp-for="BuiltupArea" class="form-control" value="@Model.BuiltupArea" />
+                <span asp-validation-for="BuiltupArea" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label">地址</label>
+                <input asp-for="Address" class="form-control" value="@Model.Address" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Summary" class="control-label">简介</label>
+                <input asp-for="Summary" class="form-control" value="@Model.Summary" />
+                <span asp-validation-for="Summary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Summary" class="control-label">封面</label>     <br/>           
+               <img src="~/images/@Model.Icon" width="100" height="100" />
+            </div>
+            <div class="form-group text-center">
+                <input type="submit" value="保存" class="btn btn-danger" />
+            </div>
+        </form>
      
         </div>
 </div>

@@ -16,6 +16,7 @@ namespace DotNetLive.Search.Engine.Client
     public partial class DotNetSearch
     {
         private string _defaultIndex;
+        private string _defaultType;
         private SearchEngineBuilder _builder;
         private ILogger _logger;
 
@@ -46,6 +47,17 @@ namespace DotNetLive.Search.Engine.Client
         public DotNetSearch UseIndex(string index)
         {
             _defaultIndex = index;
+            return this;
+        }
+
+        /// <summary>
+        /// 设置类型
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public DotNetSearch SetType(string type)
+        {
+            _defaultType = type;
             return this;
         }
 
@@ -146,7 +158,7 @@ namespace DotNetLive.Search.Engine.Client
             }
 
             SearchDescriptor<T> searchDescriptor = new SearchDescriptor<T>()
-                     .Type(typeof(T).SearchName())
+                     .Type(_defaultType)
                      .Index(index ?? _defaultIndex)
                      .From(pageParams.From)
                      .Size(pageParams.PageSize);
@@ -158,6 +170,7 @@ namespace DotNetLive.Search.Engine.Client
 
                 searchDescriptor = searchDescriptor.Query(q =>
                     q.QueryString(qs =>
+                        
                         qs.Fields(pageParamsSearch.SearchKeys)
                           .Query(pageParamsSearch.KeyWord)
                           .DefaultOperator(pageParamsSearch.Operator)));

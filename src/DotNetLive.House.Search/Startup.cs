@@ -40,6 +40,14 @@ namespace DotNetLive.House.Search
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
+        /// <summary>
+        /// http的请求管道处理，也就是http处理过程
+        /// 
+        /// 
+        /// 
+        /// /// </summary>
+        /// <param name="app">IApplicationBuilder： </param>
+        /// <param name="env"></param>
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -52,6 +60,36 @@ namespace DotNetLive.House.Search
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+
+            ///中间管到案例》》 应用场景： 记录日志>反爬虫>性能监控>缓存>黑白名单 ....
+            ///Netcore最极简的设计
+            //app.Use(y =>
+            //{
+            //    return async c =>
+            //    {
+            //        await c.Response.WriteAsync("步骤一开始");
+            //        await y.Invoke(c);
+            //        await c.Response.WriteAsync("步骤一结束");
+            //    };
+            //});
+            //app.Use(y =>
+            //{
+            //    return async c =>
+            //    {
+            //        await c.Response.WriteAsync("步骤二开始");
+            //        await y.Invoke(c);
+            //        await c.Response.WriteAsync("步骤二结束");
+            //    };
+            //});
+            //app.Use(y =>
+            //{
+            //    return async c =>
+            //    {
+            //        await c.Response.WriteAsync("步骤三开始");              
+            //        await c.Response.WriteAsync("步骤三结束");
+            //    };
+            //});
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

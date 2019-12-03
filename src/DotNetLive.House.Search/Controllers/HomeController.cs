@@ -12,71 +12,14 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace DotNetLive.House.Search.Controllers
-{
-    public class Article
-    {
-        public int Id
-        {
-            get;
-            set;
-        }
-        public string Title
-        {
-            get;
-            set;
-        }
-
-        public string Author
-        {
-            get;
-            set;
-        }
-
-        public string Content
-        {
-            get;
-            set;
-        }
-
-        public DateTime CreateTime
-        {
-            get;
-            set;
-        } = DateTime.Now;
-
-        public decimal Price
-        {
-            get;
-            set;
-        }
-
-
-        public double Number
-        {
-            get;
-            set;
-        }
-
-        public decimal? IsNullPrice
-        {
-            get;
-            set;
-        }
-
-
-        public double? IsNullNumber
-        {
-            get;
-            set;
-        }
-    }
-
+{ 
     public class HomeController : Controller
     {
 
         public readonly BuildShopDbContext _dbContext;
         private readonly IHostingEnvironment _hostingEnvironment;
-        DotNetSearch dotnetsearch = new DotNetSearch().UseIndex("buildingbaseinfo");
+        DotNetSearch dotnetsearch = new DotNetSearch().UseIndex("xkj_fy_buildingbaseinfos").SetType("buildingbaseinfos_type");
+        
         public HomeController(BuildShopDbContext dbcontext, IHostingEnvironment hostingEnvironment)
         {
             this._dbContext = dbcontext;
@@ -86,40 +29,37 @@ namespace DotNetLive.House.Search.Controllers
 
 
 
-        /// <summary>
-        /// 同步mysql数据到es中
-        /// </summary>
-        /// <returns></returns>
-        public bool InitializationEs()
-        {
-            //保证该数据中有一个不为空
+        ///// <summary>
+        ///// 同步mysql数据到es中
+        ///// </summary>
+        ///// <returns></returns>
+        //public bool InitializationEs()
+        //{
+        //    //保证该数据中有一个不为空
 
-            //DotNetSearch search = new DotNetSearch().UseIndex("test");
-            //var result = search.Index<Article>(new Article
-            //{
-            //    Id =4,
-            //    Author = "zhangsan4",
-            //    Content = "this is an article4",
-            //    Title = "test article4",
-            //    Number = 2200.5,
-            //    Price = 252,
-            //    IsNullNumber = 1000,
-            //    IsNullPrice = 150,                
-            //});
+        //    //DotNetSearch search = new DotNetSearch().UseIndex("test");
+        //    //var result = search.Index<Article>(new Article
+        //    //{
+        //    //    Id =4,
+        //    //    Author = "zhangsan4",
+        //    //    Content = "this is an article4",
+        //    //    Title = "test article4",
+        //    //    Number = 2200.5,
+        //    //    Price = 252,
+        //    //    IsNullNumber = 1000,
+        //    //    IsNullPrice = 150,                
+        //    //});
 
-            //同步数据
-            var list = _dbContext.buildingBaseInfos.ToList();
-            // list.Where(h=> string.IsNullOrWhiteSpace(h.Id)).ToList().ForEach(x=>x.Id = Guid.NewGuid().ToString());
-            return dotnetsearch.Bulk(list as IEnumerable<BuildingBaseInfo>) > 0;
-
-        }
-
-
+        //    //同步数据
+        //    var list = _dbContext.buildingBaseInfos.ToList();
+        //    // list.Where(h=> string.IsNullOrWhiteSpace(h.Id)).ToList().ForEach(x=>x.Id = Guid.NewGuid().ToString());
+        //    return dotnetsearch.Bulk(list as IEnumerable<BuildingBaseInfo>) > 0;
+        //}
 
 
         public IActionResult BuildShopView(List<BuildingBaseInfo> baseInfos)
         {
-            var list = _dbContext.buildingBaseInfos.OrderByDescending(u=>u.CreateTime).ToList();
+            var list = _dbContext.buildingBaseInfos.Where(y=> !y.IsDeleted).OrderByDescending(u=>u.CreateTime).ToList();
             list.ForEach(y =>
             {
                 if (y.Summary != null && y?.Summary?.Length > 30)
@@ -129,52 +69,6 @@ namespace DotNetLive.House.Search.Controllers
             return View();
         }
 
-        /// <summary>
-        /// 搜索
-        /// </summary>
-        /// <returns></returns>
-        public IActionResult Search(string name)
-        {
-
-
-            var keys = new string[] { "address", "name" };
-            int page = 1;
-            int size = 20;
-            //查询参数构造
-            IPageParam pageParams = new PageParamWithSearch
-            {
-                PageIndex = page,
-                PageSize = size,
-                KeyWord = name,
-                Operator = Nest.Operator.Or, //拼接条件
-                SearchKeys = keys,
-                Highlight = new HighlightParam
-                {
-                    Keys = keys,
-                    PostTags = "</strong>",
-                    PreTags = "<strong  style='color:red;'>",
-                    //PrefixOfKey = "h_"//替换字段前缀
-                }
-            };
-
-            //返回查询结果         
-            var select = dotnetsearch.Query<BuildingBaseInfo>(pageParams);
-            var list = select.List.ToList();
-            //var  ids = select.List.Select(x=>x.Id).ToList();
-            //在mysql 查询出来
-            //var list = _dbContext.buildingBaseInfos.Where(h => ids.Contains(h.Id)).ToList();
-            //var list = _dbContext.buildingBaseInfos.FirstOrDefault();
-            //var frist = new List<BuildingBaseInfo> { list };            
-            // dotnetsearch.Query<BuildingBaseInfo>();            
-            return View(list);
-
-        }
-
-
-
-
-
-
 
         /// <summary>
         /// 新增页面
@@ -182,8 +76,7 @@ namespace DotNetLive.House.Search.Controllers
         /// <returns></returns>
         public IActionResult Create()
         {
-            //>> 如何做到与 mysql 的数据同步?
-            //https://github.com/jprante/elasticsearch-jdbc
+          
             return View();
         }
 
@@ -212,14 +105,13 @@ namespace DotNetLive.House.Search.Controllers
             deatil.Icon = image;
             deatil.CreateTime = DateTime.Now;
             deatil.UpdateTime = DateTime.Now;
+            deatil.IsDeleted = false;
 
             _dbContext.Add(deatil);
             if (_dbContext.SaveChanges() > 0)
             {
-                return View("BuildShopView");
-            }
-            // 如何结合ES ?
-
+                return RedirectToAction("BuildShopView");
+            }           
             return new BadRequestResult();
         }
 
@@ -251,10 +143,8 @@ namespace DotNetLive.House.Search.Controllers
             _dbContext.Update(deatil);
             if (_dbContext.SaveChanges() > 0)
             {
-                return View("BuildShopView");
-            }
-            // 如何结合ES ?
-
+                return RedirectToAction("BuildShopView");
+            }            
             return new BadRequestResult();
         }
 
@@ -266,16 +156,14 @@ namespace DotNetLive.House.Search.Controllers
         {
 
             var deatil = _dbContext.buildingBaseInfos.SingleOrDefault(s => s.Id == Id);
+            deatil.IsDeleted = true;
+            deatil.UpdateTime = DateTime.Now;
             _dbContext.Attach(deatil);
-            _dbContext.Remove(deatil);
+            _dbContext.Update(deatil);
             if (_dbContext.SaveChanges() > 0)
             {
-                return View("BuildShopView");
-            }
-            // 如何结合ES ?
-
-
-
+                return RedirectToAction("BuildShopView");
+            }         
             return new BadRequestResult();
         }
 
@@ -311,13 +199,64 @@ namespace DotNetLive.House.Search.Controllers
                 {
                     await MyPhoto.CopyToAsync(stream);
                 }
-                return path;
+                //为了方便展示，我这儿只是返回了文件名称，按道理应该返回该文件所在的路径
+                return fileName;
             }
             catch (Exception ex)
             {
                 return "";
             }
         }
+
+        /// <summary>
+        /// 搜索
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Search(string name)
+        {
+
+
+            var keys = new string[] { "address", "name" };
+            int page = 1;
+            int size = 20;
+            //查询参数构造
+            IPageParam pageParams = new PageParamWithSearch
+            {
+                PageIndex = page,
+                PageSize = size,
+                KeyWord = name,
+                Operator = Nest.Operator.Or, //拼接条件
+                SearchKeys = keys,
+                Highlight = new HighlightParam
+                {
+                    Keys = keys,
+                    PostTags = "</strong>",
+                    PreTags = "<strong  style='color:red;'>",
+                    //PrefixOfKey = "h_"//替换字段前缀
+                }
+            };
+
+            //返回查询结果         
+            var select = dotnetsearch.Query<BuildingBaseInfo>(pageParams);
+            var list = select.List.Where(u=> !u.IsDeleted).ToList();
+            list.ForEach(y =>
+            {
+                if (y.Summary != null && y?.Summary?.Length > 30)
+                    y.Summary = y.Summary.Substring(0, 30) + "......";
+            });
+            ViewData["data"] = list;
+            //var  ids = select.List.Select(x=>x.Id).ToList();
+            //在mysql 查询出来
+            //var list = _dbContext.buildingBaseInfos.Where(h => ids.Contains(h.Id)).ToList();
+            //var list = _dbContext.buildingBaseInfos.FirstOrDefault();
+            //var frist = new List<BuildingBaseInfo> { list };            
+            // dotnetsearch.Query<BuildingBaseInfo>();            
+            return View("BuildShopView");
+        }
+
+
+
+
 
         public IActionResult Index()
         {

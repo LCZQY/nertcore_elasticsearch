@@ -40,9 +40,9 @@ namespace DotNetLive.House.Search.Models
                     }
                 }
             }
-            builder.Entity<BuildingBaseInfo>(b => {
+                builder.Entity<BuildingBaseInfo>(b => {
                 b.ToTable("xkj_fy_buildingbaseinfos");
-                //b.Property<bool>("IsDeleted");
+                b.Property<bool>("IsDeleted");
             });           
 
         }
