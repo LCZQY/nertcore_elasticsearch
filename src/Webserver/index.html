@@ -1,28 +1,35 @@
-﻿
-    <head>
+﻿<!DOCTYPE html>
 
-        <title> 房源搜索系统</title>
-        <link href="~/webfile/index.css" rel="stylesheet" />
-        <link href="~/webfile/agent-sj-sdk.css" rel="stylesheet" />
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/webfile/index.js"></script>
-    </head>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title> 房源搜索系统</title>
+    <link href="webfile/index.css" rel="stylesheet" />
+    <link href="webfile/agent-sj-sdk.css" rel="stylesheet" />
+   
+</head>
+
+
+
 <!-- htmlRef -->
+
 <body id="beike">
     <div class="sellListPage">
 
         <div class="header">
             <div class="search">
-                <div class="input CLICKDATA" data-click-evtid="12338" data-click-event="WebClick" data-action="source_type=PC小区列表搜索框点击" log-mod="search">
-                    <form id="searchForm" method="post" asp-action="Search">
-                        <input type="text" name="name" id="searchInput" placeholder="请输入区域或小区名开始找房" autocomplete="off">
+                <div class="input CLICKDATA" data-click-evtid="12338" data-click-event="WebClick"
+                    data-action="source_type=PC小区列表搜索框点击" log-mod="search">
+                    <form id="searchForm" method="post" >
+                        <input type="text" id="name" id="searchInput" placeholder="请输入区域或楼盘名开始找房" autocomplete="off">
                         <div class="inputRightPart">
                             <div class="save" id="savedSearchMsg">
                                 <span id="savedSearchCount">0</span>
                                 条已保存搜索
                                 <span id="savedSearchArrow" class="downArrow"></span>
                             </div>
-                            <button type="submit" class="searchButton" data-bl="search" data-el="search">&nbsp;<i></i>&nbsp;</button>
+                            <button type="submit" class="searchButton" data-bl="search"
+                                data-el="search">&nbsp;<i></i>&nbsp;</button>
                         </div>
                     </form>
                     <div class="searchMsg" id="searchMsgContainer" style="display: none;"></div>
@@ -142,7 +149,9 @@
             <div class="list-more">
 
                 <dl class=" hasmore">
-                    <h2><dt title="重庆价格在售二手房">价格</dt></h2>
+                    <h2>
+                        <dt title="重庆价格在售二手房">价格</dt>
+                    </h2>
                     <dd>
                         <a href="https://cq.ke.com/ershoufang/l1p1c3611060491220" rel="nofollow">
                             <span class="checkbox "></span>
@@ -177,13 +186,16 @@
                             <span>-</span>
                             <input type="text" role="maxValue" value="">&nbsp;
                             <span>万</span>
-                            <button class="btn-range hide" data-url="/ershoufang/l1bp{min}ep{max}c3611060491220">确定</button>
+                            <button class="btn-range hide"
+                                data-url="/ershoufang/l1bp{min}ep{max}c3611060491220">确定</button>
                         </span>
 
                     </dd>
                 </dl>
                 <dl class=" ">
-                    <h2><dt title="重庆房型在售二手房">房型</dt></h2>
+                    <h2>
+                        <dt title="重庆房型在售二手房">房型</dt>
+                    </h2>
                     <dd>
                         <a href="https://cq.ke.com/ershoufang/c3611060491220" rel="nofollow">
                             <span class="checkbox checked"></span>
@@ -212,7 +224,9 @@
                     </dd>
                 </dl>
                 <dl class=" hasmore">
-                    <h2><dt title="重庆建筑面积在售二手房">建筑面积</dt></h2>
+                    <h2>
+                        <dt title="重庆建筑面积在售二手房">建筑面积</dt>
+                    </h2>
                     <dd>
                         <a href="https://cq.ke.com/ershoufang/a1l1c3611060491220" rel="nofollow">
                             <span class="checkbox "></span>
@@ -255,13 +269,16 @@
                             <span>-</span>
                             <input type="text" role="maxValue" value="">&nbsp;
                             <span>平</span>
-                            <button class="btn-range hide" data-url="/ershoufang/ba{min}ea{max}l1c3611060491220">确定</button>
+                            <button class="btn-range hide"
+                                data-url="/ershoufang/ba{min}ea{max}l1c3611060491220">确定</button>
                         </span>
 
                     </dd>
                 </dl>
                 <dl class=" hasmore">
-                    <h2><dt title="重庆房源特色在售二手房">房源特色</dt></h2>
+                    <h2>
+                        <dt title="重庆房源特色在售二手房">房源特色</dt>
+                    </h2>
                     <dd>
                         <a href="https://cq.ke.com/ershoufang/tt9l1c3611060491220" rel="nofollow">
                             <span class="checkbox "></span>
@@ -294,7 +311,9 @@
                     </dd>
                 </dl>
                 <dl class="hide " data-role="hide-row">
-                    <h2><dt title="重庆朝向在售二手房">朝向</dt></h2>
+                    <h2>
+                        <dt title="重庆朝向在售二手房">朝向</dt>
+                    </h2>
                     <dd>
                         <a href="https://cq.ke.com/ershoufang/f5l1c3611060491220" rel="nofollow">
                             <span class="checkbox "></span>
@@ -319,7 +338,9 @@
                     </dd>
                 </dl>
                 <dl class="hide " data-role="hide-row">
-                    <h2><dt title="重庆楼层在售二手房">楼层</dt></h2>
+                    <h2>
+                        <dt title="重庆楼层在售二手房">楼层</dt>
+                    </h2>
                     <dd>
                         <a href="https://cq.ke.com/ershoufang/lc1l1c3611060491220" rel="nofollow">
                             <span class="checkbox "></span>
@@ -336,7 +357,9 @@
                     </dd>
                 </dl>
                 <dl class="hide " data-role="hide-row">
-                    <h2><dt title="重庆楼龄在售二手房">楼龄</dt></h2>
+                    <h2>
+                        <dt title="重庆楼龄在售二手房">楼龄</dt>
+                    </h2>
                     <dd>
                         <a href="https://cq.ke.com/ershoufang/y1l1c3611060491220" rel="nofollow">
                             <span class="checkbox "></span>
@@ -361,7 +384,9 @@
                     </dd>
                 </dl>
                 <dl class="hide " data-role="hide-row">
-                    <h2><dt title="重庆装修在售二手房">装修</dt></h2>
+                    <h2>
+                        <dt title="重庆装修在售二手房">装修</dt>
+                    </h2>
                     <dd>
                         <a href="https://cq.ke.com/ershoufang/de1l1c3611060491220" rel="nofollow">
                             <span class="checkbox "></span>
@@ -378,7 +403,9 @@
                     </dd>
                 </dl>
                 <dl class="hide " data-role="hide-row">
-                    <h2><dt title="重庆用途在售二手房">用途</dt></h2>
+                    <h2>
+                        <dt title="重庆用途在售二手房">用途</dt>
+                    </h2>
                     <dd>
                         <a href="https://cq.ke.com/ershoufang/sf1l1c3611060491220" rel="nofollow">
                             <span class="checkbox "></span>
@@ -407,7 +434,9 @@
                     </dd>
                 </dl>
                 <dl class="hide " data-role="hide-row">
-                    <h2><dt title="重庆电梯在售二手房">电梯</dt></h2>
+                    <h2>
+                        <dt title="重庆电梯在售二手房">电梯</dt>
+                    </h2>
                     <dd>
                         <a href="https://cq.ke.com/ershoufang/ie2l1c3611060491220" rel="nofollow">
                             <span class="checkbox "></span>
@@ -420,7 +449,9 @@
                     </dd>
                 </dl>
                 <dl class="hide " data-role="hide-row">
-                    <h2><dt title="重庆权属在售二手房">权属</dt></h2>
+                    <h2>
+                        <dt title="重庆权属在售二手房">权属</dt>
+                    </h2>
                     <dd>
                         <a href="https://cq.ke.com/ershoufang/dp1l1c3611060491220" rel="nofollow">
                             <span class="checkbox "></span>
@@ -441,7 +472,9 @@
                     </dd>
                 </dl>
                 <dl class="hide " data-role="hide-row">
-                    <h2><dt title="重庆类型在售二手房">类型</dt></h2>
+                    <h2>
+                        <dt title="重庆类型在售二手房">类型</dt>
+                    </h2>
                     <dd>
                         <a href="https://cq.ke.com/ershoufang/bt1l1c3611060491220" rel="nofollow">
                             <span class="checkbox "></span>
@@ -504,8 +537,11 @@
                                 <a href="https://cq.ke.com/ershoufang/"><span></span>清空条件</a>
                             </div>
 
-                            <div class="saveBtn " data-view-evtid="11885" data-view-event="ItemExpo" data-action="source_type=PC列表页保存搜索按钮曝光">
-                                <a href="https://cq.ke.com/ershoufang/l1c3611060491220/#" class="CLICKDATA" data-click-evtid="11886" data-click-event="WebClick" data-action="source_type=PC列表页保存搜索按钮点击" id="saveBtn"><span></span>保存搜索</a>
+                            <div class="saveBtn " data-view-evtid="11885" data-view-event="ItemExpo"
+                                data-action="source_type=PC列表页保存搜索按钮曝光">
+                                <a href="https://cq.ke.com/ershoufang/l1c3611060491220/#" class="CLICKDATA"
+                                    data-click-evtid="11886" data-click-event="WebClick"
+                                    data-action="source_type=PC列表页保存搜索按钮点击" id="saveBtn"><span></span>保存搜索</a>
                             </div>
                         </div>
                     </div>
@@ -535,11 +571,14 @@
                 <!-- 无结果留资模块 -->
                 <!-- 卡片吊顶 -->
                 <div data-component="C_semCard">
-                    <div id="sem_card" keyword="" semcommunityid="0" semresblockid="3611060491220" semdistrictid="" sembizcircleid="" semsubwaystationid="" semtype="resblock">
-                        <div class="agentCardPush agentCardPushNew " data-view-event="ModuleExpo" data-bl="agentim" log-mod="ershoufang_list_semcard" data-el="1000000026559621">
+                    <div id="sem_card" keyword="" semcommunityid="0" semresblockid="3611060491220" semdistrictid=""
+                        sembizcircleid="" semsubwaystationid="" semtype="resblock">
+                        <div class="agentCardPush agentCardPushNew " data-view-event="ModuleExpo" data-bl="agentim"
+                            log-mod="ershoufang_list_semcard" data-el="1000000026559621">
 
 
-                            <div class="agentCardAgentInfo component-agent-id-100000100" data-fb-query-id="256733881628803072">
+                            <div class="agentCardAgentInfo component-agent-id-100000100"
+                                data-fb-query-id="256733881628803072">
                                 <style>
                                     .ke-agent-sj-sdk {
                                         width: 100%
@@ -554,92 +593,93 @@
                                     }
 
                                     .component-agent-es-pc-4 {
-                                        font-family: "Hiragino Sans GB","Microsoft Yahei UI","Microsoft Yahei","微软雅黑","Segoe UI",Tahoma,"宋体b8b体",SimSun,sans-serif;
+                                        font-family: "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei", "微软雅黑", "Segoe UI", Tahoma, "宋体b8b体", SimSun, sans-serif;
                                         font-size: 14px;
                                         background: #fff
                                     }
 
-                                        .component-agent-es-pc-4 .ke-agent-sj-Push {
-                                            line-height: 1;
-                                            overflow: hidden;
-                                            *zoom: 1
-                                        }
+                                    .component-agent-es-pc-4 .ke-agent-sj-Push {
+                                        line-height: 1;
+                                        overflow: hidden;
+                                        *zoom: 1
+                                    }
 
-                                        .component-agent-es-pc-4 .ke-agent-sj-Info {
-                                            float: left;
-                                            *zoom: 1
-                                        }
+                                    .component-agent-es-pc-4 .ke-agent-sj-Info {
+                                        float: left;
+                                        *zoom: 1
+                                    }
 
-                                        .component-agent-es-pc-4 .ke-agent-sj-avatar {
-                                            float: left
-                                        }
+                                    .component-agent-es-pc-4 .ke-agent-sj-avatar {
+                                        float: left
+                                    }
 
-                                        .component-agent-es-pc-4 .ke-agent-sj-erudite {
-                                            position: relative
-                                        }
+                                    .component-agent-es-pc-4 .ke-agent-sj-erudite {
+                                        position: relative
+                                    }
 
-                                            .component-agent-es-pc-4 .ke-agent-sj-erudite img {
-                                                width: 84px;
-                                                height: 84px;
-                                                border-radius: 84px;
-                                                object-fit: cover
-                                            }
+                                    .component-agent-es-pc-4 .ke-agent-sj-erudite img {
+                                        width: 84px;
+                                        height: 84px;
+                                        border-radius: 84px;
+                                        object-fit: cover
+                                    }
 
-                                        .component-agent-es-pc-4 .ke-agent-sj-agent_erudite:after {
-                                            content: "";
-                                            position: absolute;
-                                            left: -3%;
-                                            right: -3%;
-                                            padding-top: 40%;
-                                            bottom: -9%;
-                                            background-position: bottom;
-                                            background-repeat: no-repeat;
-                                            background-size: contain
-                                        }
+                                    .component-agent-es-pc-4 .ke-agent-sj-agent_erudite:after {
+                                        content: "";
+                                        position: absolute;
+                                        left: -3%;
+                                        right: -3%;
+                                        padding-top: 40%;
+                                        bottom: -9%;
+                                        background-position: bottom;
+                                        background-repeat: no-repeat;
+                                        background-size: contain
+                                    }
 
-                                        .component-agent-es-pc-4 .ke-agent-sj-cardAgentInfo {
-                                            float: left;
-                                            margin-left: 16px;
-                                            width: 235px
-                                        }
+                                    .component-agent-es-pc-4 .ke-agent-sj-cardAgentInfo {
+                                        float: left;
+                                        margin-left: 16px;
+                                        width: 235px
+                                    }
 
-                                        .component-agent-es-pc-4 .ke-agent-sj-NameContainer {
-                                            font-size: 0
-                                        }
+                                    .component-agent-es-pc-4 .ke-agent-sj-NameContainer {
+                                        font-size: 0
+                                    }
 
-                                        .component-agent-es-pc-4 .ke-agent-sj-name {
-                                            color: #101d37;
-                                            font-size: 22px;
-                                            font-weight: 700
-                                        }
+                                    .component-agent-es-pc-4 .ke-agent-sj-name {
+                                        color: #101d37;
+                                        font-size: 22px;
+                                        font-weight: 700
+                                    }
 
-                                        .component-agent-es-pc-4 .ke-agent-sj-cardAgentPhone {
-                                            margin-top: 9px;
-                                            color: #fe5d56;
-                                            font-size: 15px;
-                                            font-weight: 700;
-                                            line-height: 20px;
-                                            height: 20px
-                                        }
+                                    .component-agent-es-pc-4 .ke-agent-sj-cardAgentPhone {
+                                        margin-top: 9px;
+                                        color: #fe5d56;
+                                        font-size: 15px;
+                                        font-weight: 700;
+                                        line-height: 20px;
+                                        height: 20px
+                                    }
 
-                                        .component-agent-es-pc-4 .ke-agent-sj-phone_num {
-                                            font-size: 14px;
-                                            width: 165px;
-                                            display: inline-block;
-                                            overflow: hidden
-                                        }
+                                    .component-agent-es-pc-4 .ke-agent-sj-phone_num {
+                                        font-size: 14px;
+                                        width: 165px;
+                                        display: inline-block;
+                                        overflow: hidden
+                                    }
 
-                                        .component-agent-es-pc-4 .ke-agent-sj-im {
-                                            display: inline-block;
-                                            margin-left: 8px;
-                                            cursor: pointer;
-                                            background-image: url("https://img.ljcdn.com/beike/agent-sj-sdk/1564387195203.png");
-                                            background-position: -498px -71px;
-                                            width: 51px;
-                                            height: 20px
-                                        }
+                                    .component-agent-es-pc-4 .ke-agent-sj-im {
+                                        display: inline-block;
+                                        margin-left: 8px;
+                                        cursor: pointer;
+                                        background-image: url("https://img.ljcdn.com/beike/agent-sj-sdk/1564387195203.png");
+                                        background-position: -498px -71px;
+                                        width: 51px;
+                                        height: 20px
+                                    }
 
-                                    @@media(-webkit-min-device-pixel-ratio:2),(min-resolution:192dpi) {
+                                    @@media(-webkit-min-device-pixel-ratio:2),
+                                    (min-resolution:192dpi) {
                                         .component-agent-es-pc-4 .ke-agent-sj-im {
                                             background-image: url("https://img.ljcdn.com/beike/agent-sj-sdk/1564386919180.png");
                                             background-size: 560px 349px
@@ -666,7 +706,7 @@
                                         color: #3c475d;
                                         line-height: 22px;
                                         margin-right: 3px;
-                                        background: rgba(205,208,213,0.3)
+                                        background: rgba(205, 208, 213, 0.3)
                                     }
                                 </style>
 
@@ -675,7 +715,10 @@
 
                             <div class="agentCardResblockInfo">
                                 <div class="agentCardResblockName">
-                                    <a class="agentCardResblockTitle LOGCLICK maidian-detail" data-bl="agent_resblock_name" data-maidian_query="256733881628803072" data-log_value="3611060491220" data-log_source="链家" data-log_statid="" target="_blank" href="https://cq.ke.com/xiaoqu/3611060491220/">珠江华轩</a>
+                                    <a class="agentCardResblockTitle LOGCLICK maidian-detail"
+                                        data-bl="agent_resblock_name" data-maidian_query="256733881628803072"
+                                        data-log_value="3611060491220" data-log_source="链家" data-log_statid=""
+                                        target="_blank" href="https://cq.ke.com/xiaoqu/3611060491220/">珠江华轩</a>
                                     <span class="agentCardResblockSubTitle">
 
                                         九龙坡
@@ -686,7 +729,10 @@
                                     </span>
 
 
-                                    <a href="https://cq.ke.com/xiaoqu/3611060491220/" target="_blank" class="agentCardResblockLink LOGCLICK" data-bl="agent_resblock_info" data-log_value="3611060491220" data-log_source="链家" data-log_statid="">查看小区详情</a>
+                                    <a href="https://cq.ke.com/xiaoqu/3611060491220/" target="_blank"
+                                        class="agentCardResblockLink LOGCLICK" data-bl="agent_resblock_info"
+                                        data-log_value="3611060491220" data-log_source="链家"
+                                        data-log_statid="">查看小区详情</a>
 
 
                                 </div>
@@ -694,7 +740,9 @@
                                     <!--  -->
                                     <div class="agentCardDetailItem price">
                                         <div class="agentCardDetailTitle">小区均价</div>
-                                        <div target="_blank" class="agentCardDetailInfo LOGCLICK" data-bl="agent_resblock_avg" data-log_value="3611060491220" data-log_source="链家" data-log_statid="">
+                                        <div target="_blank" class="agentCardDetailInfo LOGCLICK"
+                                            data-bl="agent_resblock_avg" data-log_value="3611060491220"
+                                            data-log_source="链家" data-log_statid="">
 
                                             12236元/平米
 
@@ -714,7 +762,9 @@
                                     <!--  -->
                                     <div class="agentCardDetailItem">
                                         <div class="agentCardDetailTitle">近90天成交</div>
-                                        <div target="_blank" class="agentCardDetailInfo LOGCLICK" data-bl="agent_resblock_sale" data-log_value="3611060491220" data-log_source="链家" data-log_statid="">
+                                        <div target="_blank" class="agentCardDetailInfo LOGCLICK"
+                                            data-bl="agent_resblock_sale" data-log_value="3611060491220"
+                                            data-log_source="链家" data-log_statid="">
 
                                             3套
 
@@ -738,101 +788,47 @@
                 </div>
 
                 <div data-component="list">
-                    <!-- 无搜索结果 -->
+                    <!-- 楼盘列表 -->
 
-                    <ul class="sellListContent" log-mod="list">
-                        @{
-                            foreach (var item in ViewData["data"] as List<BuildingBaseInfo>)
-                            {
-
-                                <li class="clear">
-                                    <a class="img  CLICKDATA maidian-detail" data-agentid="@item.Id">
-                                        <img class="lj-lazy" src="~/images/@item.Icon"
-                                             data-original="https://ke-image.ljcdn.com/500000-inspection/prod-ec8a04c2-f176-4186-9ffc-e99fd16cdf55.jpg!m_fill,w_280,h_210,f_jpg?from=ke.com"
-                                             alt="@item.Summary"
-                                             title="@item.Summary"
-                                             style="display: block;">
-                                    </a>
-                                    <div class="info clear">
-                                        <div class="title">
-                                            <a class="VIEWDATA CLICKDATA maidian-detail"
-                                               title="@item.Summary"
-                                               data-agentid="@item.Id"
-                                               href="javascript:;"
-                                               target="_blank">
-                                                @item.Name
-                                            </a>
-                                        </div>
-                                        <div class="address">
-                                            <div class="flood">
-                                                <div class="positionInfo">
-                                                    <span class="positionIcon"></span>
-                                                    <a href="https://cq.ke.com/xiaoqu/3611060491220/">@item.Address</a>
-                                                </div>
-                                            </div>
-                                            <div class="houseInfo">
-                                                <span class="houseIcon"></span>
-
-                                                @item.BuiltupArea 平米
-                                            </div>
-                                            <div class="followInfo">
-                                                <span class="starIcon"></span>
-                                                @{
-                                                    TimeSpan ts1 = new TimeSpan(item.CreateTime.Ticks);
-                                                    TimeSpan ts2 = new TimeSpan(DateTime.Now.Ticks);
-                                                    TimeSpan ts3 = ts1.Subtract(ts2).Duration();
-                                                    //你想转的格式
-                                                    var month = (ts3.TotalDays / 30);
-                                                    var date = Convert.ToInt32(month) == 0 ? "本月发布" : Convert.ToInt32(month).ToString() + "月前发布";
-                                                }
-                                                @date
-                                            </div>
-                                            <div class="tag">
-                                                <span class="subway">近地铁</span>
-                                            </div>
-                                            <div class="priceInfo">
-                                                <div class="totalPrice"><span>@item.MaxPrice </span>万</div>
-                                                <div class="unitPrice" data-hid="19051018110100223583" data-price="13268.6">
-                                                    <span>单价</span>@item.MinPrice<span>/平方米</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="listButtonContainer">
-                                            <div class="btn-follow followBtn CLICKDATA" data-hid="19051018110100223583" data-click-evtid="11284" data-click-event="FavoriteClick" data-action="item_type=housedel_id&amp;Housedel_id=19051018110100223583&amp;status=0&amp;source_type=PC列表页房源卡片关注按钮&amp;fb_expo_id=256733881737854976">
-                                                <span class="follow-text">关注</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            }
-                        }
+                    <ul id="sellListContent" class="sellListContent" log-mod="list">
+                       
                     </ul>
 
                 </div>
                 <div data-component="C_listBottom" class="contentBottom clear">
 
                     <div class="page-box fr">
-                        <div id="page-box" class="page-box house-lst-page-box" comp-module="page" page-url="/ershoufang/pg{page}c3611060491220" page-data="{&quot;totalPage&quot;:3,&quot;curPage&quot;:1}">
-                            @*<a class="on" href="/ershoufang/c3611060491220" data-page="1">1</a>
-                            <a href="/ershoufang/pg2c3611060491220" data-page="2">2</a>*@
-              
+                        <div id="page-box" class="page-box house-lst-page-box" comp-module="page"
+                            page-url="/ershoufang/pg{page}c3611060491220"
+                            page-data="{&quot;totalPage&quot;:3,&quot;curPage&quot;:1}"> 
+
+                            <a class=" pageindex" href="javascript:;" >总条数:<span id="totalCount"></span></a>
+                            <a  class="on pageindex" href="javascript:;" data-page="2">当前页:<span id="index">0</span></a>
+                            <a class="pageindex" id="nextpage" href="javascript:;" data-page="2">下一页</a>
                         </div>
                     </div>
                 </div>
                 <div class="recommendList" id="lessResultWrap">
                     <h2 class="recommendListHeader">猜你喜欢</h2>
                 </div>
-                <div id="lessResultIds" ids="19051018110100223583,19082718110100124439,19110918110100180777,19081918110100127294,19110418110100179453,19042418110100177819,19103018110100155864,19082418110100178226,18122918110100124886,19110318110100182190,19092918110100196318">
-                    <ul data-component="lessResult" class="sellListContent VIEWDATA" data-view-evtid="11147" data-view-event="RecoModuleEXP" data-action="source_type=PC搜索少结果">
+                <div id="lessResultIds"
+                    ids="19051018110100223583,19082718110100124439,19110918110100180777,19081918110100127294,19110418110100179453,19042418110100177819,19103018110100155864,19082418110100178226,18122918110100124886,19110318110100182190,19092918110100196318">
+                    <ul data-component="lessResult" class="sellListContent VIEWDATA" data-view-evtid="11147"
+                        data-view-event="RecoModuleEXP" data-action="source_type=PC搜索少结果">
 
 
-                        <li class="clear VIEWDATA CLICKDATA" data-click-evtid="11146" data-click-event="RecoClick" data-view-evtid="11145" data-view-event="RecoItemEXP" data-action="source_type=PC搜索少结果&amp;click_position=0&amp;fb_expo_id=r1575946128300523708640231510">
-                            <a class="img" href="https://cq.ke.com/ershoufang/19102218110100141885.html" target="_blank">
-                                <img class="lj-lazy" src="./index_files/pc1_lza1y3GVZ_1.jpg!m_fill,w_280,h_210,f_jpg" alt="">
+                        <li class="clear VIEWDATA CLICKDATA" data-click-evtid="11146" data-click-event="RecoClick"
+                            data-view-evtid="11145" data-view-event="RecoItemEXP"
+                            data-action="source_type=PC搜索少结果&amp;click_position=0&amp;fb_expo_id=r1575946128300523708640231510">
+                            <a class="img" href="https://cq.ke.com/ershoufang/19102218110100141885.html"
+                                target="_blank">
+                                <img class="lj-lazy" src="./index_files/pc1_lza1y3GVZ_1.jpg!m_fill,w_280,h_210,f_jpg"
+                                    alt="">
                             </a>
                             <div class="info clear">
                                 <div class="title">
-                                    <a href="https://cq.ke.com/ershoufang/19102218110100141885.html" target="_blank">业主诚心出售，重新装修精装可直接拎包入住，满2指标</a>
+                                    <a href="https://cq.ke.com/ershoufang/19102218110100141885.html"
+                                        target="_blank">业主诚心出售，重新装修精装可直接拎包入住，满2指标</a>
 
                                 </div>
                                 <div class="address">
@@ -879,13 +875,16 @@
                                 </div>
                                 <div class="priceInfo">
                                     <div class="totalPrice"><span>90</span>万</div>
-                                    <div class="unitPrice" data-hid="19102218110100141885" data-rid="珠江华轩" data-price="10417.9">
+                                    <div class="unitPrice" data-hid="19102218110100141885" data-rid="珠江华轩"
+                                        data-price="10417.9">
                                         <span>单价10417.9元/平米</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="listButtonContainer">
-                                <div class="btn-follow followBtn CLICKDATA" data-hid="" data-click-evtid="11284" data-click-event="FavoriteClick" data-action="Housedel_id=&amp;status=0&amp;source_type=PC列表页房源卡片关注按钮">
+                                <div class="btn-follow followBtn CLICKDATA" data-hid="" data-click-evtid="11284"
+                                    data-click-event="FavoriteClick"
+                                    data-action="Housedel_id=&amp;status=0&amp;source_type=PC列表页房源卡片关注按钮">
                                     <span class="follow-text">关注</span>
                                 </div>
                             </div>
@@ -905,16 +904,23 @@
                 <div class="rightContent">
 
 
-                    <div data-component="suggestAgent" class="suggestAgent" id="suggestAgentContainer" log-mod="ershoufang_list_recommend-agent" style="display: block;">
+                    <div data-component="suggestAgent" class="suggestAgent" id="suggestAgentContainer"
+                        log-mod="ershoufang_list_recommend-agent" style="display: block;">
                         <div class="title">推荐置业顾问</div>
                         <div class="agent">
-                            <a class="img LOGVIEW LOGCLICK" data-bl="agent_community" data-el="1000000023028843" data-log_id="20001">
+                            <a class="img LOGVIEW LOGCLICK" data-bl="agent_community" data-el="1000000023028843"
+                                data-log_id="20001">
                                 <img src="./index_files/cc903198-8f1d-4daf-ae25-1a7412f86994.jpg.32x32.jpg" alt="">
                             </a>
                             <div class="info">
                                 <div class="name">
-                                    <a target="_blank" data-bl="agent_community" data-el="1000000023028843" class="LOGCLICK" data-log_id="20001">余浩</a>
-                                    <a class="lianjiaim-createtalk LOGCLICK" style="padding: 1px 0 !important;" title="在线咨询" data-role="beikeim-createtalk" data-ucid="1000000023028843" data-bl="agentim_community" data-el="1000000023028843" data-log_id="20001" data-source-port="PC:ershou_ershoufang_list_xiaoquguwen" data-source-extends="community_id=3611060491220&amp;port=pc_beike_ershou_xiaoquliebiao_guwen&amp;app_data={&quot;business_dig_v&quot;:&quot;&quot;}"></a>
+                                    <a target="_blank" data-bl="agent_community" data-el="1000000023028843"
+                                        class="LOGCLICK" data-log_id="20001">余浩</a>
+                                    <a class="lianjiaim-createtalk LOGCLICK" style="padding: 1px 0 !important;"
+                                        title="在线咨询" data-role="beikeim-createtalk" data-ucid="1000000023028843"
+                                        data-bl="agentim_community" data-el="1000000023028843" data-log_id="20001"
+                                        data-source-port="PC:ershou_ershoufang_list_xiaoquguwen"
+                                        data-source-extends="community_id=3611060491220&amp;port=pc_beike_ershou_xiaoquliebiao_guwen&amp;app_data={&quot;business_dig_v&quot;:&quot;&quot;}"></a>
                                 </div>
                                 <div class="phone">4006163920转4323</div>
                             </div>
@@ -929,8 +935,15 @@
                             </div>
                             <div class="bd">
                                 <div class="item">
-                                    <a class="tit  CLICKDATA" data-view-evtid="17324" data-view-event="ItemExpo" data-click-evtid="17325" data-click-event="WebClick" data-action="content_id=4055142&amp;content_title=12月起，买二手房请做好这5个细节，否则还是别买了！&amp;beike_id=00000000000000101230&amp;beike_name=楼市每日观察&amp;bd_source=1&amp;img_count=0&amp;position=1&amp;recom_type=1&amp;recom_scene=11" href="https://kandian.ke.com/detail/NDA1NTE0Mg==.html?from=pc_ershoufang" target="_blank" title="12月起，买二手房请做好这5个细节，否则还是别买了！">12月起，买二手房请做好这5个细节，否则还是别买了！</a>
-                                    <div class="sub-tit">正所谓“细节决定成败”，买房也是如此！在买房时，一旦你忽视了任何一个细节，那么你买的房子必然也就会存在许多麻烦，尤其是买二手房。要知道二手房存在已久，而且已经过多人之手，必然会存在许多问题。在此，小编要说的是，12月起，买二手房请做好以下这</div>
+                                    <a class="tit  CLICKDATA" data-view-evtid="17324" data-view-event="ItemExpo"
+                                        data-click-evtid="17325" data-click-event="WebClick"
+                                        data-action="content_id=4055142&amp;content_title=12月起，买二手房请做好这5个细节，否则还是别买了！&amp;beike_id=00000000000000101230&amp;beike_name=楼市每日观察&amp;bd_source=1&amp;img_count=0&amp;position=1&amp;recom_type=1&amp;recom_scene=11"
+                                        href="https://kandian.ke.com/detail/NDA1NTE0Mg==.html?from=pc_ershoufang"
+                                        target="_blank"
+                                        title="12月起，买二手房请做好这5个细节，否则还是别买了！">12月起，买二手房请做好这5个细节，否则还是别买了！</a>
+                                    <div class="sub-tit">
+                                        正所谓“细节决定成败”，买房也是如此！在买房时，一旦你忽视了任何一个细节，那么你买的房子必然也就会存在许多麻烦，尤其是买二手房。要知道二手房存在已久，而且已经过多人之手，必然会存在许多问题。在此，小编要说的是，12月起，买二手房请做好以下这
+                                    </div>
                                     <span class="arrow"></span>
                                 </div>
                             </div>
@@ -945,8 +958,10 @@
                             <div class="bd">
 
                                 <div class="item">
-                                    <a href="https://news.ke.com/cq/baike/0327972.html" target="_blank" class="tit" title="租房签合同要注意什么？">租房签合同要注意什么？</a>
-                                    <div class="sub-tit">租房的最后一道流程就是签租房合同。租房合同：是指住房出租人和承租人在租赁住房时签订的，用来明确双方权力和义务的协议。固签租房合同的注意事项十分重要。</div>
+                                    <a href="https://news.ke.com/cq/baike/0327972.html" target="_blank" class="tit"
+                                        title="租房签合同要注意什么？">租房签合同要注意什么？</a>
+                                    <div class="sub-tit">
+                                        租房的最后一道流程就是签租房合同。租房合同：是指住房出租人和承租人在租赁住房时签订的，用来明确双方权力和义务的协议。固签租房合同的注意事项十分重要。</div>
                                     <span class="arrow"></span>
                                 </div>
                             </div>
@@ -957,7 +972,8 @@
                             <div class="download sohu-hide">
                                 <div class="title">下载APP</div>
                                 <div class="qr-code">
-                                    @*<img width="94" height="94" src="./index_files/getDownloadQr(2)" alt="下载贝壳找房APP">*@
+                                    @*<img width="94" height="94" src="./index_files/getDownloadQr(2)"
+                                        alt="下载贝壳找房APP">*@
                                     <div class="text">
                                         <p>扫描上方二维码</p>
                                         <p>随时查看新房源</p>
@@ -977,10 +993,14 @@
             <div class="newHousePushContainer">
                 <h3>推荐楼盘</h3>
                 <ul log-mod="ershoufang_list_newHouseRecommand">
-                  <li>
-                        <a class="pic CLICKDATA  LOGVIEW LOGCLICK" href="http://cq.fang.ke.com/loupan/p_bcbitli/" title="联发状元坊" target="_blank" data-bl="list" data-log_id="40001" data-el="" data-log_index="1" data-click-evtid="22485" data-click-event="WebClick" data-view-evtid="22484" data-view-event="ItemExpo" data-action="source_type=二手列表页底部推荐新房&amp;fb_expo_id=r15759461281320191638453809960&amp;click_position=0&amp;project_name=bcbitli">
+                    <li>
+                        <a class="pic CLICKDATA  LOGVIEW LOGCLICK" href="http://cq.fang.ke.com/loupan/p_bcbitli/"
+                            title="联发状元坊" target="_blank" data-bl="list" data-log_id="40001" data-el=""
+                            data-log_index="1" data-click-evtid="22485" data-click-event="WebClick"
+                            data-view-evtid="22484" data-view-event="ItemExpo"
+                            data-action="source_type=二手列表页底部推荐新房&amp;fb_expo_id=r15759461281320191638453809960&amp;click_position=0&amp;project_name=bcbitli">
                             <span class="bg"></span>
-                            <img src="./index_files/phpYmT19X1543392878.png.218x150.jpg" alt="联发状元坊" title="联发状元坊">
+                            <img src="##" alt="联发状元坊" title="联发状元坊">
                             <div class="description">巴南－联发状元坊</div>
                         </a>
                         <div class="price">
@@ -991,19 +1011,52 @@
                 </ul>
             </div>
         </div>
-
     </div>
+
+
 </body>
+</html>
+<script src="webfile/jquery.js"></script>
+<script src="webfile/index.js"></script>
 <script type="text/javascript">
 
-    /**
-     * 获取分页条数
-     * */
-    @{
-        var  list = ViewData["data"] as List<BuildingBaseInfo>;
-    }
-    var html = pagehtml(@list.Count());
-    $("#page-box").append(html);   
-
     
+        var data = {
+            PageIndex: 0,
+            PageSize: 10
+        }
+        var buildingList = function (data) {
+            PostData($.Public_Url + "api/values/list", JSON.stringify(data), function (jsonData) {
+                console.log(jsonData, "-*-----------")
+                if (jsonData.code == "0") {
+                    var html = "";
+                    $.each(jsonData.extension, function (index, value) {
+                        html += listhtml(value);
+                    });
+                    $("#sellListContent").html(html)
+                    $("#totalCount").text(jsonData.totalCount);
+                    $("#pageindex").text(jsonData.PageIndex)                
+                    
+                    //分页功能
+                    pagehtml();
+                } else {
+                    alert("获取楼盘列表失败")
+                    console.log(jsonData, "获取楼盘列表失败--1107");
+                }
+            }, function (jsonData) {
+                console.log(jsonData, "获取楼盘接口报错--1110");
+            }, true);
+        }
+        buildingList(data);
+
+
+        //表单的提交
+
+        $(".searchButton").bind("click",function(){
+
+              
+        });
+    
+
+
 </script>

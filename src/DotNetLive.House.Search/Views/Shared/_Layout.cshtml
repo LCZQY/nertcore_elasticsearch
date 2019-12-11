@@ -17,35 +17,30 @@
     </environment>
 </head>
 <style>
-   
-    th,td{
-        text-align:center;
+
+    th, td {
+        text-align: center;
     }
-    table,tr, td,th {
+
+    table, tr, td, th {
         border: #dddddd solid thin;
     }
 </style>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="banner" style="display: block">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"> @*Elasticsearch 简单实战*@</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    @*<li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>*@
-                </ul>
-            </div>
+            <ul class="channelList">
+                <li>
+                    <a href="##">首页</a>
+                </li>
+                <li class="selected">
+                    <a href="javascript:;">地图找房</a>
+                </li>
+
+            </ul>
+
         </div>
-    </nav>
+    </div>
 
     <partial name="_CookieConsentPartial" />
 
@@ -53,7 +48,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2019 - DotNetLive.House.Search</p>
+            <p>&copy; 2019 - 房源快速搜索系统</p>
         </footer>
     </div>
 

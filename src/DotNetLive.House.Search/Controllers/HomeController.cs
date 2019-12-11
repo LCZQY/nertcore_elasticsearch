@@ -57,14 +57,15 @@ namespace DotNetLive.House.Search.Controllers
         //}
 
 
-        public IActionResult BuildShopView(List<BuildingBaseInfo> baseInfos)
+        public IActionResult BuildShopView(int pageIdnex = 0, int pageSize = 10)
         {
-            var list = _dbContext.buildingBaseInfos.Where(y=> !y.IsDeleted).OrderByDescending(u=>u.CreateTime).ToList();
+            var list = _dbContext.buildingBaseInfos.Where(y => !y.IsDeleted).Skip(pageIdnex * pageSize).Take(pageSize).
+                OrderByDescending(u => u.CreateTime).ToList();
             list.ForEach(y =>
             {
                 if (y.Summary != null && y?.Summary?.Length > 30)
                     y.Summary = y.Summary.Substring(0, 30) + "......";
-            });
+            });           
             ViewData["data"] = list;
             return View();
         }
@@ -230,9 +231,9 @@ namespace DotNetLive.House.Search.Controllers
                 Highlight = new HighlightParam
                 {
                     Keys = keys,
-                    PostTags = "</strong>",
-                    PreTags = "<strong  style='color:red;'>",
-                    //PrefixOfKey = "h_"//替换字段前缀
+                    PostTags = "</h1>",
+                    PreTags = "<h1>",
+                 //   PrefixOfKey = "h_"//替换字段前缀
                 }
             };
 
@@ -241,6 +242,7 @@ namespace DotNetLive.House.Search.Controllers
             var list = select.List.Where(u=> !u.IsDeleted).ToList();
             list.ForEach(y =>
             {
+                
                 if (y.Summary != null && y?.Summary?.Length > 30)
                     y.Summary = y.Summary.Substring(0, 30) + "......";
             });

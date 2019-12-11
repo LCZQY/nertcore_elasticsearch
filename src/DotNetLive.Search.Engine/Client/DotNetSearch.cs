@@ -74,6 +74,15 @@ namespace DotNetLive.Search.Engine.Client
 
         #endregion
 
+
+        /// <summary>
+        /// Es 链接串
+        /// </summary>
+        /// <returns></returns>
+        public  ElasticClient Client()
+        {
+           return _builder?.Client;
+        }
         #region 增删改查
         /// <summary>
         /// 新增一条文档
@@ -90,6 +99,7 @@ namespace DotNetLive.Search.Engine.Client
 
 
         });
+
 
         /// <summary>
         /// 更新一条文档
@@ -139,6 +149,8 @@ namespace DotNetLive.Search.Engine.Client
             return t;
         }
 
+
+
         /// <summary>
         /// 方法有点长，需要重构
         /// </summary>
@@ -163,27 +175,30 @@ namespace DotNetLive.Search.Engine.Client
                      .From(pageParams.From)
                      .Size(pageParams.PageSize);
 
-            
             if (pageParams is PageParamWithSearch)
             {
                 PageParamWithSearch pageParamsSearch = pageParams as PageParamWithSearch;
 
                 searchDescriptor = searchDescriptor.Query(q =>
                     q.QueryString(qs =>
-                        
                         qs.Fields(pageParamsSearch.SearchKeys)
                           .Query(pageParamsSearch.KeyWord)
                           .DefaultOperator(pageParamsSearch.Operator)));
-            }else if (pageParams is PageParam)
+
+
+            }
+            else if (pageParams is PageParam)
             {
                 searchDescriptor = searchDescriptor.Query(q =>
                     q.QueryString(qs =>
                         qs.Query(pageParams.KeyWord)
                           .DefaultOperator(pageParams.Operator)));
             }
+
             //是否需要高亮
             bool hasHighlight = pageParams.Highlight?.Keys?.Length > 0;
-            if (hasHighlight) {
+            if (hasHighlight)
+            {
                 //TODO
                 BuildHighLightQuery<T>(pageParams, ref searchDescriptor);
             }
@@ -191,14 +206,17 @@ namespace DotNetLive.Search.Engine.Client
             ISearchResponse<T> response = _builder?.Client.Search<T>(s => searchDescriptor);
 
             var list = response.Documents;
-            if (hasHighlight) {
-               var  listWithHightlight = new List<T>();
+            var listWithHightlight = new List<T>();
+            if (hasHighlight)
+            {
+
                 response.Hits.ToList().ForEach(x =>
                 {
                     if (x.Highlights?.Count > 0)
                     {
                         PropertyInfo[] properties = typeof(T).GetProperties();
-                        foreach (string key in pageParams.Highlight?.Keys) {
+                        foreach (string key in pageParams.Highlight?.Keys)
+                        {
                             //先得到要替换的内容
                             if (x.Highlights.ContainsKey(key))
                             {
@@ -207,7 +225,8 @@ namespace DotNetLive.Search.Engine.Client
                                 //没找到带前缀的属性，则替换之前的
                                 if (info == null && pageParams.Highlight.ReplaceAuto)
                                 {
-                                    info = properties.FirstOrDefault(p => p.Name == key);
+                                    var filed = key[0].ToString().ToUpper() + key.Substring(1, key.Length - 1);
+                                    info = properties.FirstOrDefault(p => p.Name == filed);
                                 }
                                 if (info?.CanWrite == true)
                                 {
@@ -222,13 +241,12 @@ namespace DotNetLive.Search.Engine.Client
                     }
                     listWithHightlight.Add(x.Source);
                 });
-                var hightlight = listWithHightlight;
             }
 
-          
+
             IQueryResult<T> result = new CustomQueryResult<T>
             {
-                List = list,
+                List = listWithHightlight,
                 Took = response.Took,
                 Total = response.Total
             };
@@ -349,7 +367,6 @@ namespace DotNetLive.Search.Engine.Client
                     //_logger.Error(response.ItemsWithErrors)
                     return 0;
                 }
-
             }
             return response.Items.Count;
 
@@ -378,7 +395,40 @@ namespace DotNetLive.Search.Engine.Client
             }
             return response.Items.Count;
         }
-        #endregion 
+        #endregion
+        public void Sum()
+        {
+
+            var client = _builder?.Client;
+            QueryContainer termQuery = new TermQuery() { Field = "lastname", Value = "求和" };
+            var result = client.Search<Order>(s => s
+                            .Aggregations(a => a
+                                .Sum("my_sum_agg", sa => sa
+                                    .Field(p => p.TotalPrice)
+                                )
+                            )
+                        );
+
+            var agg = result.Aggs.Sum("my_sum_agg");
+            var searchResults = client.Search<Order>(s => s
+                            //  .Query(termQuery)  //带筛选条件
+                            .Aggregations(r => r.Terms("firstname", r1 => r1.Field(r2 => r2.Lastname)
+                                .OrderAscending("sumprice")
+                                .Aggregations(y => y.Sum("sumprice", y1 => y1.Field(y2 => y2.TotalPrice))))));
+            var carTypes = searchResults.Aggs.Terms("firstname");
+            List<double> re = new List<double>();
+            foreach (var carType in carTypes.Items)
+            {
+                string key = carType.Key;
+                System.Console.WriteLine("key:" + key + " total:" + carType.Sum("sumprice").Value);
+                re.Add((double)carType.Sum("sumprice").Value);
+            }
+            //List<SumTotalPrice> orders = searchResults.Documents.ToList();
+            //   System.Console.WriteLine(orders.Count() + " total:" + searchResults.Total);
+            //System.Console.WriteLine(searchResults.RequestInformation);
+            System.Console.ReadLine();
+
+        }
 
         #endregion
 
@@ -400,5 +450,13 @@ namespace DotNetLive.Search.Engine.Client
             return false;
         }
         #endregion
+
+
+        
+
+
+
+
+
     }
 }
