@@ -174,6 +174,7 @@ namespace DotNetLive.Search.Engine.Client
                      .Index(index ?? _defaultIndex)
                      .From(pageParams.From)
                      .Size(pageParams.PageSize);
+          
 
             if (pageParams is PageParamWithSearch)
             {
@@ -304,6 +305,38 @@ namespace DotNetLive.Search.Engine.Client
             var response = _builder?.Client.Search<T>(searchRequest);
             return response.Documents;
         }
+
+        /// <summary>
+        /// 查询某个值大于等于        
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="field">字段名</param>
+        /// <param name="value">查询值</param>
+        /// <param name="index">索引</param>
+        /// <returns></returns>
+        public IEnumerable<T> AddGreaterThanEqual<T>(string field, string value, string index = null) where T : class
+        {          
+            if (string.IsNullOrEmpty(field))
+            {
+                return null;
+            }
+            ///GreaterThan 大于
+            ///GreaterThanOrEquals 大于等于
+            ///LessThan 小于
+            ///LessThanOrEquals 小于等于
+
+            ISearchRequest searchRequest = new SearchDescriptor<T>().Index(index ?? _defaultIndex).PostFilter(f => f.TermRange(x => x.Field(field).GreaterThanOrEquals(value)));
+            var response = _builder?.Client.Search<T>(searchRequest);
+            return response.Documents;
+        }
+
+
+
+
+
+
+
+
         #endregion
 
         #region  根据ID数组查询
@@ -396,39 +429,7 @@ namespace DotNetLive.Search.Engine.Client
             return response.Items.Count;
         }
         #endregion
-        public void Sum()
-        {
 
-            var client = _builder?.Client;
-            QueryContainer termQuery = new TermQuery() { Field = "lastname", Value = "求和" };
-            var result = client.Search<Order>(s => s
-                            .Aggregations(a => a
-                                .Sum("my_sum_agg", sa => sa
-                                    .Field(p => p.TotalPrice)
-                                )
-                            )
-                        );
-
-            var agg = result.Aggs.Sum("my_sum_agg");
-            var searchResults = client.Search<Order>(s => s
-                            //  .Query(termQuery)  //带筛选条件
-                            .Aggregations(r => r.Terms("firstname", r1 => r1.Field(r2 => r2.Lastname)
-                                .OrderAscending("sumprice")
-                                .Aggregations(y => y.Sum("sumprice", y1 => y1.Field(y2 => y2.TotalPrice))))));
-            var carTypes = searchResults.Aggs.Terms("firstname");
-            List<double> re = new List<double>();
-            foreach (var carType in carTypes.Items)
-            {
-                string key = carType.Key;
-                System.Console.WriteLine("key:" + key + " total:" + carType.Sum("sumprice").Value);
-                re.Add((double)carType.Sum("sumprice").Value);
-            }
-            //List<SumTotalPrice> orders = searchResults.Documents.ToList();
-            //   System.Console.WriteLine(orders.Count() + " total:" + searchResults.Total);
-            //System.Console.WriteLine(searchResults.RequestInformation);
-            System.Console.ReadLine();
-
-        }
 
         #endregion
 
@@ -452,10 +453,10 @@ namespace DotNetLive.Search.Engine.Client
         #endregion
 
 
+
+
+
         
-
-
-
 
 
     }

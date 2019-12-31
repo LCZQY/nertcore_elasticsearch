@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DotNetLive.House.Search\DotNetLive.House.Search.csproj" />
     <ProjectReference Include="..\DotNetLive.Search.Engine\DotNetLive.Search.Engine.csproj" />
+    <ProjectReference Include="..\Engine\Engine.csproj" />
   </ItemGroup>
 
 </Project>

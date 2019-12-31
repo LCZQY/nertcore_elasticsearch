@@ -20,7 +20,8 @@ namespace cnblogs.import.Core
                 var result = JsonConvert.DeserializeObject<IEnumerable<T>>(json);
                 return result;
             }
-            catch (JsonSerializationException ex) {
+            catch (JsonSerializationException ex)
+            {
                 Console.WriteLine(ex);
                 return null;
             }

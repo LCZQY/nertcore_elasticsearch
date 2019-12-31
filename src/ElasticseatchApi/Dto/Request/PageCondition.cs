@@ -15,12 +15,16 @@ namespace ElasticseatchApi.Dto.Request
         public int PageSize { get; set; }
     }
 
-    public class Page
+    /// <summary>
+    /// 搜索关键字
+    /// </summary>
+    public class SeachRequest : PageCondition
     {
 
-        public string name { get; set; }
-
-
+        /// <summary>
+        /// 搜索关键字
+        /// </summary>
+        public string Keyword { get; set; }
 
 
     }
